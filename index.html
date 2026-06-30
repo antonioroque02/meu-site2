@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciador Gamer de Antonio</title>
+    <link rel="stylesheet" href="styles/game.css">
+    <script src="scripts/game.js" defer></script>
+</head>
+<body>
+    <header>
+        <div style="display: flex; align-items: center; gap: 15px;">
+            <span style="font-size: 2.5rem;">🕹️</span>
+            <h1>🎮 Games Antonio Roque</h1>
+            <span style="font-size: 2.5rem;">🎯</span>
+        </div>
+        <button id="theme-toggle" class="btn-theme">🌓 Alternar Tema</button>
+    </header>
+
+    <main class="container">
+        <!-- Seção de API Assíncrona -->
+        <section id="api-section" class="card">
+            <h3>💡 Inspiração Gamer do Dia</h3>
+            <div id="api-loading" class="spinner hidden"></div>
+            <div id="api-content"></div>
+            <div id="api-error" class="error-msg hidden"></div>
+        </section>
+
+        <!-- Seção de Games Populares (RAWG API) -->
+        <section id="games-section" class="card">
+            <h3>🎮 Games Mais Bem Avaliados 🏆</h3>
+            <p style="font-size: 0.9rem; color: gray; margin-bottom: 10px;">📊 Confira os melhores jogos disponíveis</p>
+            <div id="games-loading" class="spinner hidden"></div>
+            <div id="games-content" class="games-grid"></div>
+            <div id="games-error" class="error-msg hidden"></div>
+        </section>
+
+        <!-- Seção de Games por Busca -->
+        <section id="search-games-section" class="card">
+            <h3>🔍 Buscar Videogames 🎯</h3>
+            <p style="font-size: 0.9rem; color: gray; margin-bottom: 10px;">🕹️ Digite o nome de um jogo para explorar</p>
+            <div style="margin-bottom: 15px;">
+                <input type="text" id="game-search-input" placeholder="Ex: Elden Ring, The Legend of Zelda, Cyberpunk 2077...">
+                <button id="game-search-btn" class="btn btn-primary">🔎 Buscar</button>
+            </div>
+            <div id="search-games-loading" class="spinner hidden"></div>
+            <div id="search-games-content" class="games-grid"></div>
+            <div id="search-games-error" class="error-msg hidden"></div>
+        </section>
+
+        <!-- Painel de Estatísticas -->
+        <section class="stats-container card">
+            <div class="stat-box">Total: <span id="stat-total">0</span></div>
+            <div class="stat-box">Concluídas: <span id="stat-done">0</span></div>
+            <div class="stat-box">Pendentes: <span id="stat-pending">0</span></div>
+        </section>
+
+        <!-- Formulário de Cadastro -->
+        <section class="form-section card">
+            <h2>Nova Missão (Tarefa)</h2>
+            <form id="task-form">
+                <input type="hidden" id="task-id">
+                <div class="form-group">
+                    <label for="task-title">Título do Jogo / Tarefa</label>
+                    <input type="text" id="task-title" required placeholder="Ex: Zerar Elden Ring">
+                </div>
+                <div class="form-group">
+                    <label for="task-desc">Descrição / Objetivos</label>
+                    <textarea id="task-desc" rows="3" placeholder="Ex: Derrotar a Malenia e pegar as conquistas que faltam."></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="task-category">Categoria</label>
+                    <select id="task-category">
+                        <option value="Backlog">Backlog (Para Jogar)</option>
+                        <option value="Conquistas">Conquistas / Troféus</option>
+                        <option value="Estudos">Estudos sobre Games</option>
+                        <option value="Outros">Outros</option>
+                    </select>
+                </div>
+                <button type="submit" id="form-submit-btn" class="btn btn-primary">Adicionar Missão</button>
+                <button type="button" id="cancel-edit-btn" class="btn btn-secondary hidden">Cancelar Edição</button>
+            </form>
+        </section>
+
+        <!-- Filtros e Busca -->
+        <section class="controls-section card">
+            <div class="search-box">
+                <input type="text" id="search-input" placeholder="Buscar missão por palavra-chave...">
+            </div>
+            <div class="filter-buttons">
+                <button class="btn btn-filter active" data-filter="all">Todas</button>
+                <button class="btn btn-filter" data-filter="active">Ativas</button>
+                <button class="btn btn-filter" data-filter="completed">Concluídas</button>
+            </div>
+        </section>
+
+        <!-- Lista de Tarefas -->
+        <section class="list-section">
+            <ul id="task-list" class="task-list"></ul>
+        </section>
+    </main>
+</body>
+</html>
